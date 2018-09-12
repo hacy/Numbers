@@ -6,6 +6,8 @@ Integration Test Code Coverage %80
 ----
 
 mvn package && java -jar target/assignment-0.0.1-SNAPSHOT.jar
+
 docker build --tag=assignment-demo-1.0 .
+
 docker-compose up --build
 
