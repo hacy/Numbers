@@ -9,9 +9,7 @@ services:
       - 8102:8102
     working_dir: /opt/app
     environment:
-          eureka.client.enabled: 'true'
-          eureka.host: eureka
-          eureka.instance.preferIpAddress: 'true'
+      - "SPRING_PROFILES_ACTIVE=docker"
     depends_on:
       - mongo
       - eureka
@@ -31,5 +29,3 @@ services:
         - 8761:8761
       environment:
         - EUREKA_INSTANCE_PREFERIPADDRESS=true
-
-
