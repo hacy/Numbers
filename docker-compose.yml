@@ -1,0 +1,35 @@
+version: '3.1'
+
+services:
+  springboot:
+    build: .
+    restart: always
+    container_name: assignment
+    ports:
+      - 8102:8102
+    working_dir: /opt/app
+    environment:
+          eureka.client.enabled: 'true'
+          eureka.host: eureka
+          eureka.instance.preferIpAddress: 'true'
+    depends_on:
+      - mongo
+      - eureka
+
+  mongo:
+    image: mongo
+    container_name: assignment-mongo
+    volumes:
+      - $HOME/data/assignment-mongo-data:/data/db
+      - $HOME/data/assignment-mongo-bkp:/data/bkp
+    restart: always
+
+  eureka:
+      image: springcloud/eureka
+      container_name: eureka
+      ports:
+        - 8761:8761
+      environment:
+        - EUREKA_INSTANCE_PREFERIPADDRESS=true
+
+
